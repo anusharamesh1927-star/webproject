@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p6</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+.welcome-title {
+    color: white;
+    font-size: 48px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+
+    /* Initial state */
+    opacity: 0;
+    transform: translateY(30px);
+
+    /* Animation */
+    animation: fadeMove 2s ease forwards;
+
+    /* Soft glow */
+    text-shadow: 
+        0 0 5px rgba(255,255,255,0.6),
+        0 0 15px rgba(255,255,255,0.3);
+}
+
+/* Keyframes */
+@keyframes fadeMove {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            will-change: transform, opacity;
+        }
+
+        /* ========== HEADLINE ========== */
+        .headline {
+            font-size: clamp(2.5rem, 12vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            margin: 0 0 3rem 0;
+            will-change: transform, opacity;
+            text-align: center;
+            max-width: 100%;
+            word-spacing: 0.2em;
+        }
+
+        .headline span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px) rotateX(90deg);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* Stagger animation delays for each letter */
+        .headline span:nth-child(1) { animation-delay: 0.1s; }
+        .headline span:nth-child(2) { animation-delay: 0.15s; }
+        .headline span:nth-child(3) { animation-delay: 0.2s; }
+        .headline span:nth-child(4) { animation-delay: 0.25s; }
+        .headline span:nth-child(5) { animation-delay: 0.3s; }
+        .headline span:nth-child(6) { animation-delay: 0.35s; }
+        .headline span:nth-child(7) { animation-delay: 0.4s; }
+        .headline span:nth-child(8) { animation-delay: 0.45s; }
+        .headline span:nth-child(9) { animation-delay: 0.5s; }
+        .headline span:nth-child(10) { animation-delay: 0.55s; }
+        .headline span:nth-child(11) { animation-delay: 0.6s; }
+        .headline span:nth-child(12) { animation-delay: 0.65s; }
+        .headline span:nth-child(13) { animation-delay: 0.7s; }
+        .headline span:nth-child(14) { animation-delay: 0.75s; }
+        .headline span:nth-child(15) { animation-delay: 0.8s; }
+
+        /* ========== STATISTICS ========== */
+        .stats-wrapper {
+            display: flex;
+            gap: 4rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            will-change: transform, opacity;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 1s; }
+        .stat-item:nth-child(2) { animation-delay: 1.2s; }
+        .stat-item:nth-child(3) { animation-delay: 1.4s; }
+
+        .stat-number {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* ========== VISUAL CONTAINER ========== */
+        .visual-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: auto;
+            margin-bottom: 2rem;
+            perspective: 1000px;
+        }
+
+        .visual-element {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+            transform: scale(0.8) translateY(30px);
+            animation: fadeInScale 1s ease-out 1.8s forwards;
+            will-change: transform;
+            filter: drop-shadow(0 20px 60px rgba(102, 126, 234, 0.3));
+        }
+
+        .visual-graphic {
+            width: 100%;
+            height: 100%;
+            animation: rotateSlow 20s linear infinite;
+        }
+
+        /* ========== SCROLL INDICATOR ========== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            will-change: opacity;
+        }
+
+        .scroll-text {
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            animation: fadeInDown 0.8s ease-out 2.2s forwards;
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+            margin: 0 auto;
+            animation: slideDown 1.5s ease-in-out infinite;
+        }
+
+        /* ========== KEYFRAME ANIMATIONS ========== */
+        @keyframes staggerLetters {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) rotateX(90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes rotateSlow {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideDown {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== CONTENT SECTION ========== */
+        .content-section {
+            position: relative;
+            z-index: 3;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.2s; }
+        .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .feature-card:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: left;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .headline {
+                font-size: clamp(1.8rem, 8vw, 3.5rem);
+                letter-spacing: 0.15em;
+            }
+
+            .stats-wrapper {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .visual-container {
+                height: 220px;
+            }
+
+            .visual-element {
+                width: 150px;
+                height: 150px;
+            }
+
+            .content-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .headline {
+                letter-spacing: 0.1em;
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+
+            .stats-wrapper {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .visual-element {
+                width: 120px;
+                height: 120px;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 class="welcome-title">welcomeitzfizz</h1>
+
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="heroSection">
+        <div class="hero-container">
+
+            <!-- LETTER-SPACED HEADLINE -->
+            <h1 class="headline" id="headline"></h1>
+
+            <!-- Statistics Section -->
+            <div class="stats-wrapper">
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">User Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2.5M+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div>
+
+            <!-- Main Visual Element -->
+            <div class="visual-container">
+                <div class="visual-element" id="visual">
+                    <svg viewBox="0 0 200 200" class="visual-graphic">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.9"/>
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="#fff" stroke-width="2" opacity="0.5"/>
+                        <circle cx="100" cy="100" r="40" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+                        <path d="M 100 40 Q 140 70 140 100 Q 140 130 100 160" 
+                              fill="none" stroke="#fff" stroke-width="3" opacity="0.7"/>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scrollIndicator">
+            <span class="scroll-text">Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========== CONTENT SECTION ========== -->
+    <section class="content-section">
+        <div class="content-wrapper">
+            <h2>Discover the Magic of Scroll-Driven Animations</h2>
+            <p>Experience premium motion design that responds to your scroll. Every pixel, every frame, perfectly timed for maximum impact and performance.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>⚡ Smooth Performance</h3>
+                    <p>60fps animations using optimized transform properties and GPU acceleration</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Scroll Linked</h3>
+                    <p>Motion tied directly to scroll progress, not time-based animations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✨ Premium Feel</h3>
+                    <p>Easing and interpolation for natural, fluid motion that feels luxurious</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        /**
+         * Premium Scroll-Driven Hero Animation
+         * Handles letter-spaced headline animation and scroll effects
+         */
+
+        class PremiumHeroAnimation {
+            constructor() {
+                this.headlineText = "WELCOME ITZFIZZ";
+                this.headlineContainer = document.getElementById("headline");
+                this.stats = document.querySelectorAll(".stat-item");
+                this.visual = document.getElementById("visual");
+                this.hero = document.getElementById("heroSection");
+                this.scrollIndicator = document.getElementById("scrollIndicator");
+                this.heroContainer = document.querySelector(".hero-container");
+
+                // Animation state
+                this.scrollY = 0;
+                this.heroHeight = 0;
+                this.scrollProgress = 0;
+                this.rafId = null;
+
+                this.init();
+            }
+
+            init() {
+                // Create headline with individual letter spans
+                this.createHeadline();
+
+                // Get hero height
+                this.heroHeight = this.hero.offsetHeight;
+                window.addEventListener("resize", () => {
+                    this.heroHeight = this.hero.offsetHeight;
+                }, { passive: true });
+
+                // Setup scroll listener
+                window.addEventListener("scroll", () => {
+                    this.scrollY = window.scrollY;
+                }, { passive: true });
+
+                // Animate letters and stats on page load
+                this.animateOnLoad();
+
+                // Start scroll animation loop
+                this.startAnimationLoop();
+            }
+
+            /**
+             * Create individual letter spans for staggered animation
+             */
+            createHeadline() {
+                this.headlineText.split("").forEach((char) => {
+                    const span = document.createElement("span");
+                    span.textContent = char === " " ? "\u00A0" : char;
+                    this.headlineContainer.appendChild(span);
+                });
+            }
+
+            /**
+             * Animate letters and stats on page load
+             */
+            animateOnLoad() {
+                const letters = document.querySelectorAll(".headline span");
+
+                // Animate each letter with stagger
+                letters.forEach((letter, index) => {
+                    setTimeout(() => {
+                        letter.style.animation = `staggerLetters 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
+                    }, index * 60);
+                });
+
+                // Animate stats with stagger
+                this.stats.forEach((stat, index) => {
+                    setTimeout(() => {
+                        stat.style.animation = `fadeInUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards`;
+                    }, 600 + index * 150);
+                });
+            }
+
+            /**
+             * Easing function for smooth motion
+             */
+            easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            /**
+             * Linear interpolation with easing
+             */
+            lerp(start, end, t) {
+                return start + (end - start) * this.easeOutCubic(t);
+            }
+
+            /**
+             * Main animation loop
+             */
+            startAnimationLoop = () => {
+                this.updateScrollAnimations();
+                this.rafId = requestAnimationFrame(this.startAnimationLoop);
+            }
+
+            /**
+             * Update all scroll-based animations
+             */
+            updateScrollAnimations() {
+                // Calculate scroll progress (0 → 1)
+                this.scrollProgress = Math.min(this.scrollY / this.heroHeight, 1);
+
+                // Update based on scroll position
+                if (this.scrollY > this.heroHeight) {
+                    this.scrollIndicator.style.opacity = "0";
+                    return;
+                }
+
+                // Update scroll indicator
+                const indicatorFade = Math.max(1 - (this.scrollY / 200), 0);
+                this.scrollIndicator.style.opacity = String(indicatorFade);
+                this.scrollIndicator.style.pointerEvents = indicatorFade > 0 ? "auto" : "none";
+
+                // Update visual element
+                this.updateVisualElement();
+
+                // Update hero container parallax
+                this.updateHeroParallax();
+            }
+
+            /**
+             * Update visual element with scroll-driven transformations
+             */
+            updateVisualElement() {
+                const easedProgress = this.easeOutCubic(this.scrollProgress);
+
+                // Parallax movement
+                const parallaxY = this.scrollY * 0.5;
+
+                // Scale transformation
+                const scale = this.lerp(1, 0.85, easedProgress);
+
+                // Rotation
+                const rotation = easedProgress * 10;
+
+                // Opacity
+                const opacity = this.lerp(1, 0.7, easedProgress);
+
+                // Apply transform
+                const transform = `translateY(${parallaxY}px) scale(${scale}) rotateZ(${rotation}deg)`;
+                this.visual.style.transform = transform;
+                this.visual.style.opacity = String(opacity);
+            }
+
+            /**
+             * Update hero container parallax
+             */
+            updateHeroParallax() {
+                const parallaxDistance = this.scrollY * 0.3;
+                const contentOpacity = Math.max(1 - (this.scrollProgress * 1.2), 0);
+
+                this.heroContainer.style.transform = `translateY(${parallaxDistance}px)`;
+                this.heroContainer.style.opacity = String(contentOpacity);
+            }
+
+            /**
+             * Cleanup
+             */
+            destroy() {
+                if (this.rafId) {
+                    cancelAnimationFrame(this.rafId);
+                }
+            }
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", () => {
+                new PremiumHeroAnimation();
+            });
+        } else {
+            new PremiumHeroAnimation();
+        }
+    </script>
+
+</body>
+</html>
